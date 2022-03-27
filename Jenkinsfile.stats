@@ -20,6 +20,7 @@ pipeline {
         }
         stage("Calcualte stats") {
             steps {
+                sh "chmod +x -R" "./stats.sh"
                 sh "./stats.sh"
                 archiveArtifacts artifacts: "stats.txt"
             }
