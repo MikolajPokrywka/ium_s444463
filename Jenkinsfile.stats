@@ -1,29 +1,28 @@
 pipeline {
-   agent any
-   //Definijuemy parametry, które będzie można podać podczas wywoływania zadania
-   parameters {
-     string (
-         defaultValue: 'Hello World!',
-         description: 'Tekst, którym chcesz przywitać świat',
-         name: 'INPUT_TEXT',
-         trim: false
+    agent any 
+    parameters {
+        buildSelector(
+            defaultSelector: lastSuccessful(),
+            description: 'Which build to use for copying artifacts',
+            name: 'BUILD_SELECTOR'
         )
-   }
-   stages {
-      stage('Hello') {
-         steps {
-            //Wypisz wartość parametru w konsoli (To nie jest polecenie bash, tylko groovy!)
-            echo "INPUT_TEXT: ${INPUT_TEXT}"
-            //Wywołaj w konsoli komendę "figlet", która generuje ASCI-art
-            sh "figlet \"${INPUT_TEXT}\" | tee output.txt"
-         }
-      }
-      stage('Goodbye!') {
-         steps {
-            echo 'Goodbye!'
-            //Zarchiwizuj wynik
-            archiveArtifacts 'output.txt'
-         }
-      }
-   }
+    }
+    stages {
+       stage('checkout: Check out from version control') {
+            steps { 
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 's444463', url: 'https://git.wmi.amu.edu.pl/s444463/ium_444463.git']]])
+                }
+        }
+        stage('Copy artifacts') {
+            steps { 
+                   copyArtifacts fingerprintArtifacts: true, projectName: 's444463-create-dataset', selector: buildParameter('BUILD_SELECTOR')
+                }
+        }
+        stage("Calcualte stats") {
+            steps {
+                sh "stats.sh"
+                archiveArtifacts artifacts: "stats.txt"
+            }
+        }
+    }
 }
