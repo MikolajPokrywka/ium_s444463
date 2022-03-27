@@ -18,6 +18,7 @@ pipeline {
             name: 'CUTOFF',
             trim: false
         )
+    }
     stages {
         stage('checkout: Check out from version control') {
             steps { 
@@ -29,6 +30,7 @@ pipeline {
                 withEnv(["KAGGLE_USERNAME=${params.KAGGLE_USERNAME}", "KAGGLE_KEY=${params.KAGGLE_KEY}" ]) {
                 sh "./process_data.sh"
                 archiveArtifacts artifacts: "data_test.csv, data_dev.csv, data_train.csv"
+                }
             }
         }
     }
