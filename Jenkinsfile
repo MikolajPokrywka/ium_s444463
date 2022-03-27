@@ -1,12 +1,12 @@
 pipeline {
     agent any 
     stages {
-        stage('Stage 1 - checkout') {
+        stage('checkout: Check out from version control') {
             steps {
-                    checkout scm
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 's444463', url: 'https://git.wmi.amu.edu.pl/s444463/ium_444463.git']]])
                 }
         }
-        stage('Stage 2 - bash script') {
+        stage('bash script') {
             steps {
                 ./process_data.sh
             }
