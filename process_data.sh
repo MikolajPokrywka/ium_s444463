@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "Download data from kaggle"
+echo $KAGGLE_USERNAME
 kaggle datasets download -d shivamb/real-or-fake-fake-jobposting-prediction
 unzip -o real-or-fake-fake-jobposting-prediction.zip
 echo "Save column titles"
