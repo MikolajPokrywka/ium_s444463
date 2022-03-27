@@ -5,7 +5,7 @@ pipeline {
             steps {
                     checkout scm
                 }
-        },
+        }
         stage('Stage 2 - bash script') {
             steps {
                 ./process_data.sh
