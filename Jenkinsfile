@@ -8,7 +8,7 @@ pipeline {
         }
         stage('bash script') {
             steps {
-                ./process_data.sh
+                sh ./process_data.sh
             }
         }
     }
