@@ -13,7 +13,7 @@ pipeline {
             name: 'KAGGLE_KEY'
         )
         string (
-            defaultValue: '10000',
+            defaultValue: '17000',
             description: 'cut data',
             name: 'CUTOFF',
             trim: false
