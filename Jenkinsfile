@@ -1,5 +1,7 @@
 pipeline {
-    agent any 
+    agent { 
+        dockerfile true 
+    } 
     parameters {
         string (
             defaultValue: 'mikolajpokrywka',
@@ -30,7 +32,7 @@ pipeline {
                 withEnv(["KAGGLE_USERNAME=${params.KAGGLE_USERNAME}",
                          "KAGGLE_KEY=${params.KAGGLE_KEY}",
                          "CUTOFF=${params.CUTOFF}"]) {
-                            sh "./process_data.sh"
+                            // sh "./process_data.sh"
                             archiveArtifacts artifacts: "data_test.csv, data_dev.csv, data_train.csv"
                 }
             }
