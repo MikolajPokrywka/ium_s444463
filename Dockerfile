@@ -13,4 +13,4 @@ COPY ./process_data.sh ./
 COPY ./download_data_and_process.py ./
 
 # Domyślne polecenie, które zostanie uruchomione w kontenerze po jego starcie
-CMD python ./download_data_and_process.py
+CMD python -u ./download_data_and_process.py
