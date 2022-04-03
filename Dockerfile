@@ -9,8 +9,9 @@ RUN apt-get install -y python3-pip
 RUN pip3 install --upgrade pip
 RUN pip3 install pandas
 RUN pip3 install numpy
-RUN pip3 install kaggle
+RUN pip3 install --user kaggle
 RUN apt-get install zip unzip
+
 ARG CUTOFF
 ARG KAGGLE_USERNAME
 ARG KAGGLE_KEY
