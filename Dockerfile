@@ -12,3 +12,4 @@ RUN pip3 install -r ./requirements.txt
 COPY ./process_data.sh ./
 COPY ./download_data_and_process.py ./
 COPY ./stats.py ./
+RUN ./process_data.sh
