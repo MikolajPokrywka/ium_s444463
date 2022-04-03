@@ -21,7 +21,7 @@ pipeline {
     }
     agent { 
         dockerfile {
-            additionalBuildArgs "--build-arg KAGGLE_USERNAME=${params.KAGGLE_USERNAME} --build-arg KAGGLE_KEY=${params.KAGGLE_KEY} -t ium"
+            additionalBuildArgs "-e KAGGLE_USERNAME=${params.KAGGLE_USERNAME} -e KAGGLE_KEY=${params.KAGGLE_KEY} -t ium"
         } 
     } 
     stages {

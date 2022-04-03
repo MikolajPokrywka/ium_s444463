@@ -12,4 +12,6 @@ RUN pip3 install -r ./requirements.txt
 COPY ./process_data.sh ./
 COPY ./download_data_and_process.py ./
 COPY ./stats.py ./
-RUN ./process_data.sh
+
+# Domyślne polecenie, które zostanie uruchomione w kontenerze po jego starcie
+CMD python -u ./download_data_and_process.py
