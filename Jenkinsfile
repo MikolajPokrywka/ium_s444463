@@ -37,7 +37,7 @@ pipeline {
                             //  sh './process_data.sh'
                             sh 'ls'
                             sh 'python3 ./download_data_and_process.py'
-                            archiveArtifacts artifacts: "data_test.csv, data_dev.csv, data_train.csv, column_titles.csv"
+                            archiveArtifacts artifacts: "data_test.csv, data_dev.csv, data_train.csv, column_titles.csv, fake_job_postings.csv"
                 }
             }
         }
