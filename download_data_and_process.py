@@ -1,10 +1,10 @@
 import subprocess
 import pandas as pd
 import numpy as np
-import kaggle
+# import kaggle
 
-kaggle.api.authenticate()
-kaggle.api.dataset_download_files('shivamb/real-or-fake-fake-jobposting-prediction', path='fake_job_postings.csv', unzip=True)
+# kaggle.api.authenticate()
+# kaggle.api.dataset_download_files('shivamb/real-or-fake-fake-jobposting-prediction', path='fake_job_postings.csv', unzip=True)
 data=pd.read_csv('fake_job_postings.csv/fake_job_postings.csv')
 data = data.replace(np.nan, '', regex=True)
 
