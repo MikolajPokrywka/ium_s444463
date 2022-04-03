@@ -22,7 +22,7 @@ pipeline {
         }
         stage("Calcualte stats") {
             steps {
-                sh "python3 ./script-stats.py"
+                sh "python3 download_data_and_process.py"
                 archiveArtifacts artifacts: "stats.txt"
             }
         }
