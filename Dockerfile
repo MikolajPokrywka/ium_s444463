@@ -6,8 +6,8 @@ RUN apt update
 # Stwórzmy w kontenerze (jeśli nie istnieje) katalog /app i przejdźmy do niego (wszystkie kolejne polecenia RUN, CMD, ENTRYPOINT, COPY i ADD będą w nim wykonywane)
 WORKDIR /app
 COPY ./requirements.txt .
-RUN pip3 install -r ./requirements.txt
-
+RUN pip3 install -r ./requirements.txtv
+RUN pip3 install kaggle
 # Skopiujmy nasz skrypt do katalogu /app w kontenerze
 COPY ./process_data.sh ./
 COPY ./download_data_and_process.py ./
