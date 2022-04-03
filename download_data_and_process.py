@@ -16,3 +16,5 @@ print(data.median())
 
 print("="*10, ' data.describe(include="all") ', 10*'=')
 print(data.describe(include='all'))
+
+data.describe(include="all").to_csv(r'stats.txt', header=None, index=None, sep='\t', mode='a')

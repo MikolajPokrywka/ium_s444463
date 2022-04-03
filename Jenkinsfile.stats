@@ -1,5 +1,7 @@
 pipeline {
-    agent any 
+    agent { 
+        dockerfile true 
+    } 
     parameters {
         buildSelector(
             defaultSelector: lastSuccessful(),
@@ -20,7 +22,7 @@ pipeline {
         }
         stage("Calcualte stats") {
             steps {
-                sh "./stats.sh"
+                // sh "./stats.sh"
                 archiveArtifacts artifacts: "stats.txt"
             }
         }
