@@ -33,7 +33,7 @@ pipeline {
                          "KAGGLE_KEY=${params.KAGGLE_KEY}",
                          "CUTOFF=${params.CUTOFF}"]) {
                             // sh "./process_data.sh"
-                            archiveArtifacts artifacts: "data_test.csv, data_dev.csv, data_train.csv"
+                            archiveArtifacts artifacts: "data_test.csv, data_dev.csv, data_train.csv, column_titles.csv"
                 }
             }
         }
