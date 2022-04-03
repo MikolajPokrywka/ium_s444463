@@ -20,4 +20,4 @@ ENV CUTOFF=${CUTOFF}
 ENV KAGGLE_USERNAME=${KAGGLE_USERNAME}
 ENV KAGGLE_KEY=${KAGGLE_KEY}
 # Domyślne polecenie, które zostanie uruchomione w kontenerze po jego starcie
-CMD python3 -u ./download_data_and_process.py
+RUN ./process_data.sh

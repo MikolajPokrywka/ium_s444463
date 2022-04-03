@@ -34,7 +34,6 @@ pipeline {
                 withEnv(["KAGGLE_USERNAME=${params.KAGGLE_USERNAME}",
                          "KAGGLE_KEY=${params.KAGGLE_KEY}",
                          "CUTOFF=${params.CUTOFF}"]) {
-                            sh "sudo ./process_data.sh"
                             sh 'python3 ./download_data_and_process.py'
                             archiveArtifacts artifacts: "data_test.csv, data_dev.csv, data_train.csv, column_titles.csv"
                 }
