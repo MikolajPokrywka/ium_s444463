@@ -1,6 +1,7 @@
 import subprocess
 import pandas as pd
 import numpy as np
+rc = subprocess.call("./process_data.sh")
 data=pd.read_csv('fake_job_postings.csv')
 data = data.replace(np.nan, '', regex=True)
 

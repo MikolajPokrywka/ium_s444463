@@ -19,5 +19,3 @@ ARG KAGGLE_KEY
 ENV CUTOFF=${CUTOFF}
 ENV KAGGLE_USERNAME=${KAGGLE_USERNAME}
 ENV KAGGLE_KEY=${KAGGLE_KEY}
-# Domyślne polecenie, które zostanie uruchomione w kontenerze po jego starcie
-RUN ./process_data.sh
