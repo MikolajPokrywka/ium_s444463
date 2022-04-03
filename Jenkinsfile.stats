@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-        dockerfile true 
+        docker { image 'mikolajpokrywka/ium:0.0.0' }
     } 
     parameters {
         buildSelector(
@@ -22,7 +22,7 @@ pipeline {
         }
         stage("Calcualte stats") {
             steps {
-                // sh "./stats.sh"
+                sh "python3 ./script-stats.py"
                 archiveArtifacts artifacts: "stats.txt"
             }
         }
