@@ -34,7 +34,7 @@ pipeline {
                 withEnv(["KAGGLE_USERNAME=${params.KAGGLE_USERNAME}",
                          "KAGGLE_KEY=${params.KAGGLE_KEY}",
                          "CUTOFF=${params.CUTOFF}"]) {
-                            //  sh './process_data.sh'
+                            sh './process_data.sh'
                             sh 'ls'
                             sh 'wc data_train.csv'
                             sh 'cat column_titles.csv'
