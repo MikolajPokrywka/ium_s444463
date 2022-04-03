@@ -36,6 +36,8 @@ pipeline {
                          "CUTOFF=${params.CUTOFF}"]) {
                             //  sh './process_data.sh'
                             sh 'ls'
+                            sh 'wc data_train.csv'
+                            sh 'cat column_titles.csv'
                             sh 'python3 ./download_data_and_process.py'
                             archiveArtifacts artifacts: "data_test.csv, data_dev.csv, data_train.csv, column_titles.csv, data.csv"
                 }
