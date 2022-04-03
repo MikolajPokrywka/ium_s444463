@@ -10,7 +10,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install pandas
 RUN pip3 install numpy
 RUN pip3 install kaggle
-
+RUN apt-get install zip unzip
 ARG CUTOFF
 ARG KAGGLE_USERNAME
 ARG KAGGLE_KEY
@@ -27,4 +27,4 @@ COPY ./process_data.sh .
 COPY ./download_data_and_process.py .
 COPY ./stats.py .
 
-# RUN ./process_data.sh
+RUN ./process_data.sh
