@@ -1,8 +1,6 @@
 pipeline {
   	agent {
-		dockerfile {
-			 additionalBuildArgs "--build-arg KAGGLE_USERNAME=${params.KAGGLE_USERNAME} --build-arg KAGGLE_KEY=${params.KAGGLE_KEY} --build-arg CUTOFF=${params.CUTOFF} -t ium"
-		}
+		docker { image 'mikolajpokrywka/ium:0.0.0' }
 	}
     parameters {
         string (
