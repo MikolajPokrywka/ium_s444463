@@ -1,7 +1,5 @@
 pipeline {
-    agent { 
-        dockerfile true 
-    } 
+
     parameters {
         string (
             defaultValue: 'mikolajpokrywka',
@@ -21,6 +19,11 @@ pipeline {
             trim: false
         )
     }
+    agent { 
+        dockerfile {
+            additionalBuildArgs "--build-arg KAGGLE_USERNAME=${params.KAGGLE_USERNAME} --build-arg KAGGLE_KEY=${params.KAGGLE_KEY} -t ium"
+        } 
+    } 
     stages {
         stage('checkout: Check out from version control') {
             steps { 
