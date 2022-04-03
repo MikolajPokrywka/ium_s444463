@@ -1,11 +1,21 @@
 import subprocess
 import pandas as pd
 import numpy as np
+import os
 
-data=pd.read_csv('data_train.csv')
-data_2=pd.read_csv('data_dev.csv')
-data_3=pd.read_csv('data_test.csv')
-data = pd.concat([data, data_2, data_3], axis=0)
+
+path = ''
+
+all_files = ['column_titles.csv', 'data_train.csv', 'data_dev.csv', 'data_test.csv']
+
+data_file = open("data.csv", "w")
+for name in all_files:
+    f = open(name, "r")
+    data_file.write(f.read())
+    f.close()
+
+data_file.close()
+data=pd.read_csv('data.csv')
 data = data.replace(np.nan, '', regex=True)
 
 print("="*20)

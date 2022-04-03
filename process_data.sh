@@ -12,4 +12,4 @@ head -n $CUTOFF data_not_cutted.csv > data.csv
 sed -n '1,2500p'  data.csv > data_test.csv
 sed -n '2501,5000p'  data.csv > data_dev.csv
 tail -n +5001  data.csv > data_train.csv
-rm data.csv real-or-fake-fake-jobposting-prediction.zip column_titles.csv data_not_shuf.csv data_not_cutted.csv
+rm data.csv real-or-fake-fake-jobposting-prediction.zip data_not_shuf.csv data_not_cutted.csv
