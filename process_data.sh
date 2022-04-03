@@ -4,7 +4,6 @@ echo $KAGGLE_USERNAME
 kaggle datasets download -d shivamb/real-or-fake-fake-jobposting-prediction
 unzip -o real-or-fake-fake-jobposting-prediction.zip
 ls
-cat fake_job_postings.csv > data.csv
 echo "Save column titles"
 head -n 1 fake_job_postings.csv > column_titles.csv
 tail -n +2 fake_job_postings.csv > data_not_shuf.csv
