@@ -8,14 +8,15 @@ WORKDIR /app
 COPY ./requirements.txt .
 RUN pip3 install -r ./requirements.txt
 RUN pip3 install kaggle
-# Skopiujmy nasz skrypt do katalogu /app w kontenerze
-COPY ./process_data.sh ./
-COPY ./download_data_and_process.py ./
-COPY ./stats.py ./
-
 ARG CUTOFF
 ARG KAGGLE_USERNAME
 ARG KAGGLE_KEY
 ENV CUTOFF=${CUTOFF}
 ENV KAGGLE_USERNAME=${KAGGLE_USERNAME}
 ENV KAGGLE_KEY=${KAGGLE_KEY}
+# Skopiujmy nasz skrypt do katalogu /app w kontenerze
+COPY ./process_data.sh ./
+COPY ./download_data_and_process.py ./
+COPY ./stats.py ./
+
+RUN ./process_data.sh
