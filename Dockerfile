@@ -27,5 +27,5 @@ WORKDIR /app
 COPY ./process_data.sh .
 COPY ./download_data_and_process.py .
 COPY ./stats.py .
-RUN chmod+x process_data.sh
+RUN chmod +x process_data.sh
 RUN ./process_data.sh
