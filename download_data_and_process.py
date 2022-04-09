@@ -1,13 +1,14 @@
 import subprocess
 import pandas as pd
 import numpy as np
+
+import subprocess
+
+rc = subprocess.call("./process_data.sh")
 # import kaggle
 
 # kaggle.api.authenticate()
 # kaggle.api.dataset_download_files('shivamb/real-or-fake-fake-jobposting-prediction', path='fake_job_postings.csv', unzip=True)
-
-
-
 
 
 
