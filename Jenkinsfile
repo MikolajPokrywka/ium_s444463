@@ -26,4 +26,13 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            emailext body: "Model successfully trained", subject: "Model training 444463", to: "e19191c5.uam.onmicrosoft.com@emea.teams.ms"
+        }
+
+        failure {
+            emailext body: "Training failure", subject: "Model training 444463", to: "e19191c5.uam.onmicrosoft.com@emea.teams.ms"
+        }
+    }
 }
