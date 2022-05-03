@@ -12,4 +12,10 @@ RUN apt-get install zip unzip --yes
 WORKDIR /app
 
 COPY ./deepl.py .
+
+COPY ./stare_zadania/process_data.sh .
+COPY ./stare_zadania/download_data_and_process.py .
+COPY ./stats.py .
+COPY ./stare_zadania/real-or-fake-fake-jobposting-prediction.zip .
+
 CMD python3 deepl.py
