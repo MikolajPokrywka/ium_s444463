@@ -155,6 +155,9 @@ if __name__ == "__main__":
     for i in FN:
         f.write(i+"\n")
     f.close()
+    
+    torch.save(model, 'model')
+
 
     # plt.figure(figsize=(12, 5))
     # ax = plt.subplot(121)
