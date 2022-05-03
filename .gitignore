@@ -9,3 +9,6 @@ data_not_shuf.csv
 data_not_cutted.csv
 venv
 .~lock.fake_job_postings.csv#
+.idea
+model_resutls.txt
+model
