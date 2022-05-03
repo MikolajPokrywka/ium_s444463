@@ -4,7 +4,7 @@ import scipy
 import torch
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import kaggle
+# import kaggle
 from sklearn.feature_extraction.text import TfidfVectorizer
 from torch import nn
 from torch import optim
