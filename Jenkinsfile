@@ -18,7 +18,7 @@ pipeline {
         }
         stage('bash script') {
             steps {
-                withEnv(["EPOCH=${params.CUTOFF}"]) {
+                withEnv(["EPOCH=${params.EPOCH}"]) {
                             copyArtifacts filter: '*', projectName: 's444463-create-dataset'
                             sh 'python3 ./deepl.py $EPOCH'
                             archiveArtifacts artifacts: "model"
