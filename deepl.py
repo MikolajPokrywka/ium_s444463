@@ -9,6 +9,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from torch import nn
 from torch import optim
 import matplotlib.pyplot as plt
+import sys
+
 
 
 def convert_text_to_model_form(text):
@@ -18,9 +20,11 @@ def convert_text_to_model_form(text):
 
 
 if __name__ == "__main__":
-    kaggle.api.authenticate()
-    kaggle.api.dataset_download_files('shivamb/real-or-fake-fake-jobposting-prediction', path='.',
-                                      unzip=True)
+    epochs = int(sys.argv[1])
+
+    # kaggle.api.authenticate()
+    # kaggle.api.dataset_download_files('shivamb/real-or-fake-fake-jobposting-prediction', path='.',
+    #                                   unzip=True)
 
     data = pd.read_csv('fake_job_postings.csv', engine='python')
     # data = data.replace(np.nan, '', regex=True)
@@ -79,7 +83,6 @@ if __name__ == "__main__":
     test_losses = []
     test_accuracies = []
 
-    epochs = 50
     for e in range(epochs):
         optimizer.zero_grad()
 
