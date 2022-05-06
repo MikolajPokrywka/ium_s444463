@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 import scipy
+import matplotlib.pyplot as plt
+import re
 
 if __name__ == "__main__":
     data = pd.read_csv('fake_job_postings.csv', engine='python')
@@ -74,6 +76,18 @@ if __name__ == "__main__":
     f.write(f"Precision = {precision}\n")
     f.write(f"Recall = {recall}\n")
 
+
+    f_read = open("metrics.txt", "r")
+    content = re.findall('F-SCORE = [0-9.]+', f_read.read())
+    fscores = []
+    for c in content:
+        r = re.findall("\d+\.\d+", c)
+        fscores.append(r[0])
+
+    plt.plot(fscores) 
+    plt.ylabel('F score')
+    plt.xticks(np.arange(0, len(fscores)+1, 5))
+    plt.savefig('metrics.png')
     # f.write(f"TP descriptions:")
     # for i in TP:
     #     f.write(i+'\n')

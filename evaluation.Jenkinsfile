@@ -3,12 +3,12 @@ pipeline {
 		dockerfile true
 	}
     parameters {
-        string (
-            defaultValue: '10',
-            description: 'Epochs number',
-            name: 'EPOCH',
-            trim: false
-        )
+	    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+		buildSelector(
+			defaultSelector: lastSuccessful(),
+			description: 'From which build copy content',
+			name: 'BUILD_SELECTOR'
+		)
     }
     stages {
         stage('checkout: Check out from version control') {
@@ -18,11 +18,11 @@ pipeline {
         }
         stage('bash script') {
             steps {
-                withEnv(["EPOCH=${params.EPOCH}"]) {
-                            copyArtifacts filter: '*', projectName: 's444463-training/master'
+                withEnv(["BRANCH=${params.BRANCH}"]) {
+                            copyArtifacts filter: '*', projectName: 's444463-training/$BRANCH'
                             copyArtifacts filter: '*', projectName: 's444463-create-dataset'
                             sh 'python3 ./evaluation.py'
-                            archiveArtifacts artifacts: "metrics.txt"
+                            archiveArtifacts artifacts: "metrics.txt" "metrics.png"
                 }
             }
         }

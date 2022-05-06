@@ -22,6 +22,7 @@ pipeline {
                             copyArtifacts filter: '*', projectName: 's444463-create-dataset'
                             sh 'python3 ./deepl.py $EPOCH'
                             archiveArtifacts artifacts: "model"
+                            build job: "s444380-evaluation/master"
                 }
             }
         }
