@@ -18,12 +18,10 @@ pipeline {
         }
         stage('bash script') {
             steps {
-                withEnv(["BRANCH=${params.BRANCH}"]) {
-                            copyArtifacts filter: '*', projectName: 's444463-training/$BRANCH'
-                            copyArtifacts filter: '*', projectName: 's444463-create-dataset'
-                            sh 'python3 ./evaluation.py'
-                            archiveArtifacts artifacts: "metrics.txt" "metrics.png"
-                }
+                    copyArtifacts filter: '*', projectName: 's444356-training/${BRANCH}', selector: buildParameter('BUILD_SELECTOR')
+                    copyArtifacts filter: '*', projectName: 's444463-create-dataset'
+                    sh 'python3 ./evaluation.py'
+                    archiveArtifacts artifacts: "metrics.txt" "metrics.png"
             }
         }
     }
