@@ -76,7 +76,7 @@ if __name__ == "__main__":
     f.write(f"Precision = {precision}\n")
     f.write(f"Recall = {recall}\n")
 
-
+    f.close()
     f_read = open("metrics.txt", "r")
     content = re.findall('F-SCORE = [0-9.]+', f_read.read())
     fscores = []
