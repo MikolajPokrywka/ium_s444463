@@ -19,7 +19,7 @@ pipeline {
         stage('bash script') {
             steps {
                 withEnv(["EPOCH=${params.EPOCH}"]) {
-                            copyArtifacts filter: '*', projectName: 's444463-training'
+                            copyArtifacts filter: '*', projectName: 's444463-training/master'
                             copyArtifacts filter: '*', projectName: 's444463-create-dataset'
                             sh 'python3 ./evaluation.py'
                             archiveArtifacts artifacts: "metrics.txt"
