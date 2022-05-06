@@ -20,6 +20,7 @@ pipeline {
             steps {
                     copyArtifacts filter: '*', projectName: 's444356-training/${BRANCH}', selector: buildParameter('BUILD_SELECTOR')
                     copyArtifacts filter: '*', projectName: 's444463-create-dataset'
+                    copyArtifacts filter: '*', projectName: 's444463-evaluation/master'
                     sh 'python3 ./evaluation.py'
                     archiveArtifacts artifacts: "metrics.txt, metrics.png"
             }
