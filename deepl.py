@@ -24,6 +24,7 @@ if __name__ == "__main__":
     print(type(sys.argv[1]))
     print(sys.argv[1])
     epochs = int(sys.argv[1])
+    # epochs=10
 
     # kaggle.api.authenticate()
     # kaggle.api.dataset_download_files('shivamb/real-or-fake-fake-jobposting-prediction', path='.',
@@ -33,18 +34,23 @@ if __name__ == "__main__":
     # data = data.replace(np.nan, '', regex=True)
     data = data[["company_profile", "fraudulent"]]
     data = data.dropna()
+    company_profile = data["company_profile"]
 
-    data_train, data_test = train_test_split(data, test_size=3000, random_state=1)
-    data_dev, data_test = train_test_split(data_test, test_size=1500, random_state=1)
+    # data_train, data_test = train_test_split(data, test_size=3000, random_state=1)
+    # data_dev, data_test = train_test_split(data_test, test_size=1500, random_state=1)
+    data_train = pd.read_csv('data_train.csv', engine='python', header=None).dropna()
+    data_dev = pd.read_csv('data_dev.csv', engine='python', header=None).dropna()
+    data_test = pd.read_csv('data_test.csv', engine='python', header=None).dropna()
 
-    x_train = data_train["company_profile"]
-    x_dev = data_dev["company_profile"]
-    x_test = data_test["company_profile"]
+    x_train = data_train[5]
+    x_dev = data_dev[5]
+    x_test = data_test[5]
 
-    y_train = data_train["fraudulent"]
-    y_dev = data_dev["fraudulent"]
-    y_test = data_test["fraudulent"]
+    y_train = data_train[17]
+    y_dev = data_dev[17]
+    y_test = data_test[17]
 
+    company_profile = np.array(company_profile)
     x_train = np.array(x_train)
     x_dev = np.array(x_dev)
     x_test = np.array(x_test)
@@ -55,7 +61,8 @@ if __name__ == "__main__":
 
     vectorizer = TfidfVectorizer()
 
-    x_train = vectorizer.fit_transform(x_train)
+    company_profile = vectorizer.fit_transform(company_profile)
+    x_train = vectorizer.transform(x_train)
     x_dev = vectorizer.transform(x_dev)
     x_test = vectorizer.transform(x_test)
 
@@ -72,7 +79,7 @@ if __name__ == "__main__":
     model = nn.Sequential(
         nn.Linear(x_train.shape[1], 64),
         nn.ReLU(),
-        nn.Linear(64, data_train["fraudulent"].nunique()),
+        nn.Linear(64, data_train[17].nunique()),
         nn.LogSoftmax(dim=1))
 
     # Define the loss
@@ -122,10 +129,12 @@ if __name__ == "__main__":
 
     FP = []
     FN = []
+    model.eval()
+    print(x_test.size())
     log_ps = model(x_test)
     ps = torch.exp(log_ps)
     top_p, top_class = ps.topk(1, dim=1)
-    descr = np.array(data_test["company_profile"])
+    descr = np.array(data_test[5])
     for i, (x, y) in enumerate(zip(np.array(top_class), np.array(y_test.view(*top_class.shape)))):
         d = descr[i]
         if x == y:

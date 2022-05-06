@@ -12,3 +12,4 @@ venv
 .idea
 model_resutls.txt
 model
+metrics.txt
