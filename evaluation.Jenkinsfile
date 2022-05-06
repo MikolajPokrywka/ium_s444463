@@ -19,7 +19,7 @@ pipeline {
         stage('Copy artifacts') {
             steps {
                     copyArtifacts filter: '*', projectName: 's444463-evaluation/master', optional: true
-                    copyArtifacts filter: '*', projectName: 's444356-training/${BRANCH}', selector: buildParameter('BUILD_SELECTOR')
+                    copyArtifacts fingerprintArtifacts: true, projectName: 's444463-traning/$BRANCH', selector: buildParameter('BUILD_SELECTOR')
                     copyArtifacts filter: '*', projectName: 's444463-create-dataset'
             }
         }
