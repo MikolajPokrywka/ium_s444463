@@ -82,11 +82,11 @@ if __name__ == "__main__":
     fscores = []
     for c in content:
         r = re.findall("\d+\.\d+", c)
-        fscores.append(r[0])
-
-    plt.plot(fscores) 
+        fscores.append(float(r[0]))
+    
     plt.ylabel('F score')
-    plt.xticks(np.arange(0, len(fscores)+1, 5))
+    plt.plot(np.arange(0, len(fscores)), fscores) 
+    # plt.xticks(np.arange(0, len(fscores)+1, 5))
     plt.savefig('metrics.png')
     # f.write(f"TP descriptions:")
     # for i in TP:
