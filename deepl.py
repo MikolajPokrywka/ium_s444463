@@ -30,6 +30,7 @@ def convert_text_to_model_form(text):
 
 @ex.automain
 def my_main(epochs, _run):
+    epochs = int(epochs)
     # print(sys.argv[1])
     # print(type(sys.argv[1]))
     # print(sys.argv[1])
