@@ -21,7 +21,8 @@ pipeline {
                 withEnv(["EPOCH=${params.EPOCH}"]) {
                             copyArtifacts filter: '*', projectName: 's444463-create-dataset'
                             sh 'python3 ./deepl.py  with "epochs=$EPOCH"'
-                            archiveArtifacts artifacts: "model, my_runs"
+                            mv _sources/deepl_* source.py
+                            archiveArtifacts artifacts: "model, source.py"
                             build job: "s444463-evaluation/master"
                 }
             }
