@@ -6,3 +6,4 @@ matplotlib
 sklearn
 scipy
 sacred
+pymongo
