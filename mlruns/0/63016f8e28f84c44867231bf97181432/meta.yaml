@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/0/63016f8e28f84c44867231bf97181432/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 63016f8e28f84c44867231bf97181432
+run_uuid: 63016f8e28f84c44867231bf97181432
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1652635790126
+status: 1
+tags: []
+user_id: mikolaj

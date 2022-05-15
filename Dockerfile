@@ -12,5 +12,6 @@ RUN apt-get install zip unzip --yes
 WORKDIR /app
 
 COPY ./deepl.py .
+COPY ./MLProject .
 
 # CMD python3 deepl.py

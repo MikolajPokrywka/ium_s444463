@@ -7,3 +7,4 @@ sklearn
 scipy
 sacred
 pymongo
+mlflow

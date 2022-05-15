@@ -1,0 +1,12 @@
+name: s444463
+
+docker_env:
+  image: ium_444463
+
+entry_points:
+  main:
+    parameters:
+      EPOCH: {type: int, default: 10}
+    command: "python3 ./deepl.py {EPOCH}"
+  eval:
+    command: "python3 evaluation.py"

@@ -1,3 +1,4 @@
+import json
 import pandas as pd
 import numpy as np
 import scipy
@@ -10,40 +11,33 @@ from torch import nn
 from torch import optim
 import matplotlib.pyplot as plt
 import sys
-from sacred import Experiment
-from sacred.observers import FileStorageObserver
-from sacred.observers import MongoObserver
+import mlflow
+from mlflow.models import infer_signature
 
-ex = Experiment()
-
-ex.observers.append(FileStorageObserver('my_runs'))
-ex.observers.append(MongoObserver(url='mongodb://admin:IUM_2021@172.17.0.1:27017', db_name='sacred'))
-vectorizer = TfidfVectorizer()
-
-@ex.config
-def my_config():
-    epochs = 10
-
+mlflow.set_tracking_uri("http://172.17.0.1:5000")
+mlflow.set_experiment("s444463")
 
 def convert_text_to_model_form(text):
     a = vectorizer.transform([text])
     b = torch.tensor(scipy.sparse.csr_matrix.todense(a)).float()
     return b
 
-@ex.automain
-def my_main(epochs, _run):
-    epochs = int(epochs)
+
+def train(epochs):
     # print(sys.argv[1])
     # print(type(sys.argv[1]))
     # print(sys.argv[1])
     # epochs = int(sys.argv[1])
     # epochs=10
+    mlflow.log_param("epochs", epochs)
 
     # kaggle.api.authenticate()
     # kaggle.api.dataset_download_files('shivamb/real-or-fake-fake-jobposting-prediction', path='.',
     #                                   unzip=True)
 
     data = pd.read_csv('fake_job_postings.csv', engine='python')
+
+
     # data = data.replace(np.nan, '', regex=True)
     data = data[["company_profile", "fraudulent"]]
     data = data.dropna()
@@ -72,11 +66,16 @@ def my_main(epochs, _run):
     y_dev = np.array(y_dev)
     y_test = np.array(y_test)
 
+    vectorizer = TfidfVectorizer()
 
     company_profile = vectorizer.fit_transform(company_profile)
     x_train = vectorizer.transform(x_train)
     x_dev = vectorizer.transform(x_dev)
     x_test = vectorizer.transform(x_test)
+
+    siganture = json.dumps({"input:": 'tfidf vectorized company profile', "output:": "0 = ok, 1 = fake job"})
+    input_example = x_train[:20]
+
 
     x_train = torch.tensor(scipy.sparse.csr_matrix.todense(x_train)).float()
     x_dev = torch.tensor(scipy.sparse.csr_matrix.todense(x_dev)).float()
@@ -184,8 +183,17 @@ def my_main(epochs, _run):
     f.close()
     
     torch.save(model, 'model')
-    ex.add_artifact("model")
+    mlflow.pytorch.log_model(model, "model", signature=siganture, input_example=input_example)
+    mlflow.pytorch.save_model(model, "model", signature=siganture, input_example=input_example)
 
+
+print(sys.argv[1])
+print(type(sys.argv[1]))
+print(sys.argv[1])
+epochs = int(sys.argv[1])
+
+if __name__ == "__main__":
+    train(epochs)
 
     # plt.figure(figsize=(12, 5))
     # ax = plt.subplot(121)
