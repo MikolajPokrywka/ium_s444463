@@ -12,10 +12,12 @@ import matplotlib.pyplot as plt
 import sys
 from sacred import Experiment
 from sacred.observers import FileStorageObserver
+from sacred.observers import MongoObserver
 
 ex = Experiment()
 
 ex.observers.append(FileStorageObserver('my_runs'))
+ex.observers.append(MongoObserver(url='mongodb://admin:IUM_2021@172.17.0.1:27017', db_name='sacred'))
 vectorizer = TfidfVectorizer()
 
 @ex.config
