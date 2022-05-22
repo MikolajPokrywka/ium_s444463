@@ -15,3 +15,5 @@ model
 metrics.txt
 metrics.png
 my_runs
+mlruns
+modelML

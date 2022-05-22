@@ -1,3 +1,5 @@
+wheel
+Pillow
 pandas
 numpy 
 kaggle

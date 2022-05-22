@@ -14,9 +14,8 @@ import sys
 import mlflow
 from mlflow.models import infer_signature
 
-mlflow.set_tracking_uri("http://172.17.0.1:5000")
-mlflow.set_experiment("s444463")
 
+mlflow.set_experiment("s444463x")
 def convert_text_to_model_form(text):
     a = vectorizer.transform([text])
     b = torch.tensor(scipy.sparse.csr_matrix.todense(a)).float()
@@ -183,8 +182,10 @@ def train(epochs):
     f.close()
     
     torch.save(model, 'model')
-    mlflow.pytorch.log_model(model, "model", signature=siganture, input_example=input_example)
-    mlflow.pytorch.save_model(model, "model", signature=siganture, input_example=input_example)
+    input_example = data_train[:5]
+    siganture = infer_signature(input_example, np.array(['company_profile']))
+    mlflow.pytorch.log_model(model, "modelML", signature=siganture, input_example=input_example)
+    mlflow.pytorch.save_model(model, "modelML", signature=siganture, input_example=input_example)
 
 
 print(sys.argv[1])
@@ -193,6 +194,15 @@ print(sys.argv[1])
 epochs = int(sys.argv[1])
 
 if __name__ == "__main__":
+    # mlflow.set_tracking_uri("http://172.17.0.1:5000")
+
+
+    # with mlflow.start_run() as run:
+
+        # mlflow.set_tracking_uri("http://172.17.0.1:5000")
+        # mlflow.set_experiment("s444463")
+    mlflow.log_param("TEST", 'TEST')
+
     train(epochs)
 
     # plt.figure(figsize=(12, 5))

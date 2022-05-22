@@ -14,4 +14,4 @@ WORKDIR /app
 COPY ./deepl.py .
 COPY ./MLProject .
 
-# CMD python3 deepl.py
+# CMD python3 deepl.py 10
