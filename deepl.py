@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import sys
 import mlflow
 from mlflow.models import infer_signature
-
+from urllib.parse import urlparse
 
 mlflow.set_experiment("s444463x")
 def convert_text_to_model_form(text):
@@ -184,8 +184,14 @@ def train(epochs):
     torch.save(model, 'model')
     input_example = data_train[:5]
     siganture = infer_signature(input_example, np.array(['company_profile']))
-    mlflow.pytorch.log_model(model, "modelML", signature=siganture, input_example=input_example)
-    mlflow.pytorch.save_model(model, "modelML", signature=siganture, input_example=input_example)
+
+    # path = urlparse(mlflow.get_tracking_uri()).scheme
+
+    # if path != "file":
+    #     mlflow.pytorch.log_model(model, "modelML", signature=siganture, input_example=input_example)
+    # else:
+    #     mlflow.pytorch.log_model(model, "modelML", signature=siganture, input_example=input_example)
+    #     mlflow.pytorch.save_model(model, "modelML", signature=siganture, input_example=input_example)
 
 
 print(sys.argv[1])
