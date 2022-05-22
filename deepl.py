@@ -14,6 +14,8 @@ import sys
 import mlflow
 from mlflow.models import infer_signature
 from urllib.parse import urlparse
+import zipfile
+
 
 mlflow.set_experiment("s444463x")
 def convert_text_to_model_form(text):
@@ -28,6 +30,8 @@ def train(epochs):
     # print(sys.argv[1])
     # epochs = int(sys.argv[1])
     # epochs=10
+    with zipfile.ZipFile('stare_zadania/real-or-fake-fake-jobposting-prediction.zip', 'r') as zip_ref:
+        zip_ref.extractall('')
     mlflow.log_param("epochs", epochs)
 
     # kaggle.api.authenticate()
@@ -183,7 +187,7 @@ def train(epochs):
     
     torch.save(model, 'model')
     input_example = data_train[:5]
-    siganture = infer_signature(input_example, np.array(['company_profile']))
+    # siganture = infer_signature(input_example, np.array(['company_profile']))
 
     # path = urlparse(mlflow.get_tracking_uri()).scheme
 
