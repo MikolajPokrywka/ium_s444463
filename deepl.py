@@ -30,7 +30,7 @@ def train(epochs):
     # print(sys.argv[1])
     # epochs = int(sys.argv[1])
     # epochs=10
-    with zipfile.ZipFile('stare_zadania/real-or-fake-fake-jobposting-prediction.zip', 'r') as zip_ref:
+    with zipfile.ZipFile('real-or-fake-fake-jobposting-prediction.zip', 'r') as zip_ref:
         zip_ref.extractall('')
     mlflow.log_param("epochs", epochs)
 

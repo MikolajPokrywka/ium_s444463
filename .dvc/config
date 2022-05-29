@@ -1,0 +1,4 @@
+[core]
+    remote = ium_ssh_remote
+['remote "ium_ssh_remote"']
+    url = ssh://ium-sftp@tzietkiewicz.vm.wmi.amu.edu.pl/ium-sftp

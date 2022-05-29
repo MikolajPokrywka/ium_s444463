@@ -10,3 +10,4 @@ scipy
 sacred
 pymongo
 mlflow
+dvc
