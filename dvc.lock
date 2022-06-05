@@ -1,25 +1,25 @@
 schema: '2.0'
 stages:
   train:
-    cmd: python3 deepl.py 10
+    cmd: python3 deepl.py 50
     deps:
     - path: real-or-fake-fake-jobposting-prediction.zip
       md5: 720b87177496c52f028ec184935f8031
       size: 16868281
     outs:
     - path: model
-      md5: a5a5e44c792a7b5c7b3b841677593df2
+      md5: fcb422dbe338d861bd905e19769314a4
       size: 4012127
   evaluate:
     cmd: python3 evaluation.py
     deps:
     - path: model
-      md5: a5a5e44c792a7b5c7b3b841677593df2
+      md5: fcb422dbe338d861bd905e19769314a4
       size: 4012127
     outs:
     - path: metrics.png
-      md5: 1144a6e9e28ae600f30835f7fb9a3314
-      size: 9952
+      md5: 7652f6d9944d3a19e476f3b1727789ea
+      size: 12541
     - path: metrics.txt
-      md5: f9c1fd4d06b750e45fd72c32e022ec64
-      size: 73
+      md5: 3d047ff442a5f3299e283eccd4b66fb5
+      size: 118
