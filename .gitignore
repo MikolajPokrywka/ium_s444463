@@ -1,7 +1,6 @@
 .ipynb_checkpoints
 fake_job_postings.csv
 column_titles.csv
-data_test.csv
 data_dev.csv
 data_train.csv
 data.csv 

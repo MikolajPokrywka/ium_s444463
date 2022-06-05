@@ -17,7 +17,7 @@ if __name__ == "__main__":
     company_profile = vectorizer.fit_transform(company_profile)
     model = torch.load('model')
 
-    data_test = data[1:100]
+    data_test = pd.read_csv('data_test.csv', engine='python', header=None)
     data_test = data_test.dropna()
     x_test = data_test[5]
     y_test = data_test[17]
