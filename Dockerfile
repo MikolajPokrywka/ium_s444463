@@ -10,7 +10,7 @@ RUN apt-get install zip unzip --yes
 
 
 WORKDIR /app
-
+RUN useradd -r -u 111 jenkins
 COPY ./deepl.py .
 # COPY ./MLProject .
 COPY ./evaluation.py .
