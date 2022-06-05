@@ -24,7 +24,6 @@ pipeline {
                                 sh 'dvc remote modify --local ium_ssh_remote password ${IUM_PASS}'
                                 sh 'dvc pull'
                                 sh 'dvc repro'
-                                sh ll
                                 }
                 }
             }
