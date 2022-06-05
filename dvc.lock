@@ -8,13 +8,13 @@ stages:
       size: 16868281
     outs:
     - path: model
-      md5: fcb422dbe338d861bd905e19769314a4
+      md5: e1d0aebb797410c218a8109aa6f62ff4
       size: 4012127
   evaluate:
     cmd: python3 evaluation.py
     deps:
     - path: model
-      md5: fcb422dbe338d861bd905e19769314a4
+      md5: e1d0aebb797410c218a8109aa6f62ff4
       size: 4012127
     outs:
     - path: metrics.png
