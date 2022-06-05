@@ -21,7 +21,7 @@ pipeline {
                     [sshUserPrivateKey(credentialsId: '48ac7004-216e-4260-abba-1fe5db753e18', keyFileVariable: 'IUM_SFTP_KEY', passphraseVariable: '', usernameVariable: 's444463')]) {
                                 sh 'dvc remote add -f -d ium_ssh_remote ssh://ium-sftp@tzietkiewicz.vm.wmi.amu.edu.pl/ium-sftp'
                                 sh 'dvc remote modify --local ium_ssh_remote keyfile $IUM_SFTP_KEY'
-                                sh USERNAME='s444463'
+                                sh LNAME='s444463'
                                 sh 'dvc pull'
                                 sh 'dvc repro'
                                 sh ll
