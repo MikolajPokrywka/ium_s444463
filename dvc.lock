@@ -6,20 +6,9 @@ stages:
     - path: real-or-fake-fake-jobposting-prediction.zip
       md5: 720b87177496c52f028ec184935f8031
       size: 16868281
-    outs:
-    - path: model
-      md5: e1d0aebb797410c218a8109aa6f62ff4
-      size: 4012127
   evaluate:
     cmd: python3 evaluation.py
     deps:
     - path: model
-      md5: e1d0aebb797410c218a8109aa6f62ff4
+      md5: 473ae2a6b46cacfab08a3708175f65a5
       size: 4012127
-    outs:
-    - path: metrics.png
-      md5: 7652f6d9944d3a19e476f3b1727789ea
-      size: 12541
-    - path: metrics.txt
-      md5: 3d047ff442a5f3299e283eccd4b66fb5
-      size: 118
