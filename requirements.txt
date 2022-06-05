@@ -11,3 +11,4 @@ sacred
 pymongo
 mlflow
 dvc
+dvc[ssh]

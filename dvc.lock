@@ -1,0 +1,25 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python3 deepl.py 10
+    deps:
+    - path: real-or-fake-fake-jobposting-prediction.zip
+      md5: 720b87177496c52f028ec184935f8031
+      size: 16868281
+    outs:
+    - path: model
+      md5: a5a5e44c792a7b5c7b3b841677593df2
+      size: 4012127
+  evaluate:
+    cmd: python3 evaluation.py
+    deps:
+    - path: model
+      md5: a5a5e44c792a7b5c7b3b841677593df2
+      size: 4012127
+    outs:
+    - path: metrics.png
+      md5: 1144a6e9e28ae600f30835f7fb9a3314
+      size: 9952
+    - path: metrics.txt
+      md5: f9c1fd4d06b750e45fd72c32e022ec64
+      size: 73
