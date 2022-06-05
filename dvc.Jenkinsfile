@@ -2,13 +2,7 @@ pipeline {
   	agent {
 		dockerfile true
 	}
-        parameters {
-            password(
-                defaultValue: '',
-                description: 'DVC pass',
-                name: 'IUM_SFTP_KEY'
-            )
-    }
+
     stages {
         stage('checkout: Check out from version control') {
             steps { 
