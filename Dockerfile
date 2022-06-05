@@ -14,6 +14,5 @@ WORKDIR /app
 COPY ./deepl.py .
 # COPY ./MLProject .
 COPY ./evaluation.py .
-COPY ./real-or-fake-fake-jobposting-prediction.zip .
 
 # CMD python3 deepl.py 10
