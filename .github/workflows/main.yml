@@ -33,3 +33,5 @@ jobs:
           pip install -r requirements.txt
           python deepl.py 50
           python evaluation.py
+          cml-publish metrics.png --md >> report.md
+          cml-send-comment report.md
